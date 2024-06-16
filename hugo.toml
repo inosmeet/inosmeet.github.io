@@ -10,7 +10,7 @@ pygmentsStyle = "monokai"
 
 [params]
   footer = "Meet Soni"
-  description = "Sky above, sand below and peace within"
+  description = "Trying to figure out things!"
   ShowBackToTopButton = true
   customHeadHTML = """
     <!-- KaTeX -->
@@ -54,12 +54,12 @@ pygmentsStyle = "monokai"
     url = "/posts/"
     weight = 2
 
-  [[menu.main]]
-      identifier = "about"
-      name = "About"
-      url = "/about/"
-      weight = 3
-      pre = "<span data-feather='info'></span>"
+  # [[menu.main]]
+  #     identifier = "about"
+  #     name = "About"
+  #     url = "/about/"
+  #     weight = 3
+  #     pre = "<span data-feather='info'></span>"
 
   [[menu.main]]
     identifier = "github"
