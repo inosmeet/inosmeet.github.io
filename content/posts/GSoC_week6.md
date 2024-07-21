@@ -11,7 +11,6 @@ type: "post"
 - [flag feature](https://github.com/intel/cve-bin-tool/pull/4246)
 - [demo pull request template](https://github.com/intel/cve-bin-tool/pull/4239)
 - [docs](https://github.com/intel/cve-bin-tool/pull/4245)
-- [disabled failing tests](https://github.com/intel/cve-bin-tool/pull/4247)
 
 
 This week, I created a CI script that adds data to the `mismatch` database whenever a pull request updates a particular directory. Additionally, I wrote documentation on the
