@@ -17,13 +17,25 @@ type: "post"
 
 ## Summary
 
+
+### Project Overview
 Over the course of GSoC 2024, my project aimed to enhance the `cve-bin-tool` by improving its product mapping capabilities to reduce false positives. Initially, the tool relied on explicit, pre-defined
 mappings between binary signatures and a list of CPE identifiers. While effective, this approach required frequent updates as vulnerabilities evolved and was less effective when handling arbitrary product
 names from component lists like Rust's `Cargo.lock` files. My project focused on addressing this limitation by implementing a more robust and flexible mapping system compatible with the existing structure 
 of the tool. This new system reduces the need for constant updates and improves the accuracy of vulnerability detection, particularly in handling varied and previously unsupported product names. The 
 changes introduced integrate seamlessly with the current implementation, requiring minimal adjustments and preserving the integrity of the tool's overall architecture.
 
-Through this project, I was able to resolve key issues identified in the community ([#3152](https://github.com/intel/cve-bin-tool/issues/3152), [#3179](https://github.com/intel/cve-bin-tool/issues/3179)),
+### Why We Needed the Mismatch Database
+To further reduce false positives, especially in cases where `purl2cpe` does not find a match, we developed the mismatch database. Previously, when no match was found, the tool would revert to searching
+product names directly, which led to incorrect associations with vulnerabilities. The mismatch database serves as a source of “anti-matching” information, ensuring that similarly named but unrelated 
+products do not cause false positives.
+
+### Potential Uses Beyond cve-bin-tool
+While initially intended for `cve-bin-tool`, this database has the potential to be useful outside of the project as well. By making it available, we hope to support efforts in the broader community to
+de-duplicate similarly named software components and enhance the accuracy of vulnerability management tools.
+
+### Resolving Key Issues
+Through this project, I was able to resolve key issues identified in the community ([issue #3152](https://github.com/intel/cve-bin-tool/issues/3152), [issue #3179](https://github.com/intel/cve-bin-tool/issues/3179)),
 contributing to a more reliable and scalable solution for vulnerability management.
 
 ## Tasks Achieved
@@ -63,6 +75,15 @@ contributing to a more reliable and scalable solution for vulnerability manageme
   - [intel/cve-bin-tool#4300](https://github.com/intel/cve-bin-tool/pull/4300)
   - [intel/cve-bin-tool#4346](https://github.com/intel/cve-bin-tool/pull/4346)
   - [intel/cve-bin-tool#4348](https://github.com/intel/cve-bin-tool/pull/4348)
+
+## Future Work
+
+### Expanding the Mismatch Database
+The current implementation of the mismatch database focuses primarily on vendors. This approach is useful but faces challenges when dealing with unknown vendors. As highlighted in 
+[issue #3193](https://github.com/intel/cve-bin-tool/issues/3193), unknown vendors can lead to gaps in data and unresolved mismatches.
+
+To address these limitations, there is potential to expand the database to include additional attributes such as invalid purls and more. By broadening the scope, we can enhance the database's ability to
+handle complex cases, improve the accuracy of vulnerability detection, and reduce the likelihood of false positives.
 
 ## What stood out to me:
 
