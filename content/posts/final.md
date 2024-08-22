@@ -20,10 +20,21 @@ type: "post"
 
 ### Project Overview
 Over the course of GSoC 2024, my project aimed to enhance the `cve-bin-tool` by improving its product mapping capabilities to reduce false positives. Initially, the tool relied on explicit, pre-defined
-mappings between binary signatures and a list of CPE identifiers. While effective, this approach required frequent updates as vulnerabilities evolved and was less effective when handling arbitrary product
-names from component lists like Rust's `Cargo.lock` files. My project focused on addressing this limitation by implementing a more robust and flexible mapping system compatible with the existing structure 
-of the tool. This new system reduces the need for constant updates and improves the accuracy of vulnerability detection, particularly in handling varied and previously unsupported product names. The 
-changes introduced integrate seamlessly with the current implementation, requiring minimal adjustments and preserving the integrity of the tool's overall architecture.
+mappings between binary signatures and a list of CPE identifiers. However, this approach had significant limitations. As vulnerabilities evolved and new components emerged, maintaining these mappings 
+required frequent updates, and the tool struggled with arbitrary product names, such as those found in Rust's `Cargo.lock` files.
+
+To address these issues, my project focused on implementing a more robust and flexible mapping system that integrates seamlessly with the tool's existing structure. This new system leverages the 
+`purl2cpe` database to handle varied and previously unsupported product names more effectively. By utilizing the `purl2cpe` database, the system reduces the need for constant updates and improves the
+accuracy of vulnerability detection.
+
+### What is purl2cpe ?
+The purl2cpe is a database that contains relations between CPEs (Common Product Enumerator) and PURLs (Package URL). PURL is an open specification that standardizes identification and location of software
+packages/versions in their respective repositories.
+
+While CPEs provide a precise identification for components and versions, they do not provide an easy way to connect these vulnerable component versions with their respective Open Source repositories. 
+These connections must be made available by human curation.
+
+purl2cpe makes it easy for anyone to monitor the packages they use for known vulnerabilities.
 
 ### Why We Needed the Mismatch Database
 To further reduce false positives, especially in cases where `purl2cpe` does not find a match, we developed the mismatch database. Previously, when no match was found, the tool would revert to searching
@@ -89,6 +100,9 @@ handle complex cases, improve the accuracy of vulnerability detection, and reduc
 
 What I really enjoyed during this period was having the freedom to make decisions and try things my way. It felt great to have that level of ownership. Working alongside industry experts was a huge bonus—
 I got to learn from their experience while still having the space to explore and grow on my own. Overall, it was a super empowering experience.
+
+Looking back, If I had a chance to do it all over again, I’d just sprinkle in a bit more structure to balance the freedom with some checkpoints—because even the best adventures can benefit from a few 
+guiding stars.
 
 ----
 I want to extend my heartfelt thanks to **Google** for providing this incredible opportunity through the GSoC program. It’s been an amazing journey of learning and growth. A big thank you to the **Python 
