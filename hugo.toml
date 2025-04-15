@@ -64,7 +64,7 @@ pygmentsStyle = "monokai"
   [[menu.main]]
     identifier = "github"
     pre = "<span data-feather='github'></span>"
-    url = "https://github.com/inosmeet/inosmeet.github.io"
+    url = "https://github.com/inosmeet/"
     weight = 4
 
   [[menu.main]]
