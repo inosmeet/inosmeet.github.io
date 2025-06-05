@@ -1,0 +1,22 @@
+<div class="container list-posts">
+
+  <h1 class="list-title">{{ .Title }}</h1>
+
+  {{ if .Sections }}
+    {{ range .Sections }}
+
+      <div class="">
+        <h2>
+        ⤷ <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </h2>
+      </div>
+    {{ end }}
+  {{ end }}
+
+  {{ range (where .Pages "Params.type" "post").GroupByDate "2006" }}
+    <h2 class="">{{ .Key }}</h2>
+    {{ range .Pages }}
+      {{ partial "list-posts.html" . }}
+    {{ end }}
+  {{ end }}
+</div>
